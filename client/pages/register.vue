@@ -18,6 +18,9 @@ export default {
       this.$router.push('/login');
     },
   },
+  mounted() {
+    if (this.$auth.loggedIn) this.$router.push('/');
+  },
 };
 </script>
 
