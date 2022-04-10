@@ -81,7 +81,7 @@ export default {
     };
   },
   methods: {
-    async onSubmit(event) {
+    async onSubmit() {
       const username = this.username.trim();
       const password = this.password.trim();
       const repeatPassword = this.repeatPassword.trim();

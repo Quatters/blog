@@ -30,10 +30,5 @@ export default {
       body: '',
     };
   },
-  methods: {
-    onSubmit() {},
-  },
 };
 </script>
-
-<style></style>
