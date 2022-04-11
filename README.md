@@ -24,7 +24,7 @@
 Затем примените миграции:
 
 ```
-docker-compose run backend python manage.py migrate
+docker compose up db -d && docker-compose run backend python manage.py migrate
 ```
 
 Наконец, поднимите контейнеры:
