@@ -6,9 +6,9 @@ services:
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_USER:postgres
-      - POSTGRES_PASSWORD:postgres
-      - POSTGRES_DB:blog
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=blog
     volumes:
       - ./docker/postgresql/data:/var/lib/postgresql/data
 
@@ -20,7 +20,7 @@ services:
     environment:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=blog
+      - POSTGRES_PASSWORD=postgres
     env_file:
       - ./server/.env
     depends_on:
