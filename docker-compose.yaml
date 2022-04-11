@@ -3,11 +3,12 @@ version: '1.0'
 services:
   db:
     image: postgres
+    ports:
+      - '5432:5432'
     environment:
       - POSTGRES_USER:postgres
       - POSTGRES_PASSWORD:postgres
       - POSTGRES_DB:blog
-      - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
       - ./docker/postgresql/data:/var/lib/postgresql/data
 
