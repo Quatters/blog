@@ -17,19 +17,31 @@
 - [x] Пагинация постов и комментариев (infinite scroll)
 - [x] Тесты для всех endpoint'ов (backend)
 
-## Запуск dev-сервера
+## Запуск в Docker
 
-Выполните `./manage.py runserver` в директории `server/`.
+Перед запуском `docker-compose` переименуйте файл `server/example.env` в `server/.env` и по крайней мере измените значение `SECRET_KEY`.
 
-Перед запуском клиентского dev-сервера установите зависимости: `npm install` в директории `client/`,
+Затем примените миграции:
 
-затем запустите его с помощью `npm run dev`.
+```
+docker-compose run backend python manage.py migrate
+```
+
+Наконец, поднимите контейнеры:
+
+```
+docker-compose up
+```
+
+Сервер клиента будет доступен по адресу [localhost:3000](http://localhost:3000), backend-сервер - на [localhost:8000](http://localhost:8000).
+
+Также можно запустить тесты с помощью
+
+```
+docker-compose run backend python manage.py test
+```
 
 ## Техническая информация
-
-При разработке backend'а использовался **Python v3.10** вместе с **Django v3.2**. БД - дефолтная **SQLite**, файл сгенерирован Django.
-
-Для frontend'а использовались **Node v16.13**, **npm v8.5**.
 
 Backend обслуживает следующие маршруты:
 
