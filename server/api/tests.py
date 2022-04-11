@@ -66,6 +66,7 @@ class PostsTestCase(APITestCase):
     user = None
     token = None
     post_count = 22
+    existing_post_id = None
 
     def setUp(self):
         self.user = User.objects.create(username=self.username)
@@ -75,6 +76,8 @@ class PostsTestCase(APITestCase):
         for i in range(self.post_count):
             post = Post.objects.create(title=f'title {i}', body=f'body {i}', author=self.user)
             post.save()
+
+        self.existing_post_id = post.id;
 
         # get token before creating posts
         response = self.client.post('/api/auth/login/', data={'username': self.username, 'password': self.password})
@@ -101,10 +104,10 @@ class PostsTestCase(APITestCase):
             f'Posts actual count should be 2')
 
     def test_get_post_by_existing_id(self):
-        response = self.client.get('/api/posts/4/')
+        response = self.client.get(f'/api/posts/{self.existing_post_id}/')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK,
-            'Status 200 for get existing post')
+            'Status 200 for getting existing post')
         self.assertTrue(response.data, 
             'Should return post data')
 
